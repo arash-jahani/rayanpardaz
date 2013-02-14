@@ -1,0 +1,50 @@
+  //be mahze focus shodan bar roye Summery mahsolat faqat baskhshe darke mahsolate jadid nemayesh dade shavad
+  $(document).ready(function(){
+  $("#product").focus(function(){
+      $(".form-Insert").show();
+    $(".form-Delete").hide();
+     $(".form-Edit").hide();
+  });
+});  
+ //be mahze focus shodan bar roye Summery mahsolat faqat baskhshe darje mahsolate jadid nemayesh dade shavad
+$(document).ready(function(){
+  $("#customer").focus(function(){
+      $(".form-Insert").show();
+    $(".form-Delete").hide();
+  });
+});  
+   //be mahze focus shodan bar roye Summery mahsolat faqat baskhshe darke mahsolate jadid nemayesh dade shavad
+  $(document).ready(function(){
+  $("#links").focus(function(){
+      $(".form-Insert").show();
+    $(".form-Delete").hide();
+     $(".form-Edit").hide();
+  });
+});  
+// 3 mojmoe dastorate zir baraye namayesh form hayi ke bar roye yek dighar qarar darand
+$(document).ready(function(){
+  $(".link-Insert").click(function(){
+    $(".form-Delete").hide();
+     $(".form-Edit").hide();
+     $(".form-Insert").show();
+  });
+});
+$(document).ready(function(){
+  $(".link-Edit").click(function(){
+    $(".form-Insert").hide();
+     $(".form-Delete").hide();          
+     $(".form-Edit").show();         
+  });
+});
+$(document).ready(function(){
+  $(".link-Delete").click(function(){
+    $(".form-Insert").hide();
+     $(".form-Edit").hide();        
+     $(".form-Delete").show();
+  });
+});
+$(document).ready(function(){
+  $("#field").focus(function(){
+    $(".status").hide(); 
+  });
+});
