@@ -1,0 +1,129 @@
+CREATE DATABASE  IF NOT EXISTS `rayanpardaz` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_persian_ci */;
+USE `rayanpardaz`;
+-- MySQL dump 10.13  Distrib 5.5.16, for Win32 (x86)
+--
+-- Host: localhost    Database: rayanpardaz
+-- ------------------------------------------------------
+-- Server version	5.5.29
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `category`
+--
+
+DROP TABLE IF EXISTS `category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `category` (
+  `id` tinyint(4) NOT NULL,
+  `type` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `category`
+--
+
+LOCK TABLES `category` WRITE;
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES (1,'فتوکپی'),(2,'پرینتر'),(3,'چک پرینتر'),(4,'فاکس'),(5,'انواع اسکنر '),(6,'پولشمار'),(7,' تست اسکناس'),(8,'صندوق فروشگاهی'),(9,'ویدئو/دیتا پروژکتور'),(10,'کامپیوتر و لپ تاپ'),(11,'مانیتور'),(12,'کالای مصرفی');
+/*!40000 ALTER TABLE `category` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `customer`
+--
+
+DROP TABLE IF EXISTS `customer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `customer` (
+  `name` varchar(80) COLLATE utf8_persian_ci NOT NULL,
+  PRIMARY KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customer`
+--
+
+LOCK TABLES `customer` WRITE;
+/*!40000 ALTER TABLE `customer` DISABLE KEYS */;
+INSERT INTO `customer` VALUES ('b'),('شرکت پیام گسترش پارس');
+/*!40000 ALTER TABLE `customer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `driver`
+--
+
+DROP TABLE IF EXISTS `driver`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `driver` (
+  `name` varchar(100) COLLATE utf8_persian_ci NOT NULL,
+  `link` text COLLATE utf8_persian_ci NOT NULL,
+  PRIMARY KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `driver`
+--
+
+LOCK TABLES `driver` WRITE;
+/*!40000 ALTER TABLE `driver` DISABLE KEYS */;
+INSERT INTO `driver` VALUES ('arash',''),('m213asdasddriver','http://www.servlets.com/soapbox/problems-jsp.html');
+/*!40000 ALTER TABLE `driver` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `product`
+--
+
+DROP TABLE IF EXISTS `product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `product` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `type` varchar(20) COLLATE utf8_persian_ci NOT NULL,
+  `name` varchar(30) COLLATE utf8_persian_ci DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `price` varchar(15) COLLATE utf8_persian_ci DEFAULT '0',
+  `oldornew` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  `des` longtext COLLATE utf8_persian_ci,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=162 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `product`
+--
+
+LOCK TABLES `product` WRITE;
+/*!40000 ALTER TABLE `product` DISABLE KEYS */;
+INSERT INTO `product` VALUES (141,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(139,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(76,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(75,'فتوکپی','p;sd123','1999-09-09','1000000000','بدون کارکرد','1\r\n2\r\n3\r\n4\r\n5\r\n6\r\n7'),(72,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(73,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(74,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(71,'پرینتر','LTPR1','1999-09-09','10000000','بدون کارکرد',''),(70,'پرینتر','LTPR1','1999-09-09','10000000','بدون کارکرد',''),(68,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(67,'فتوکپی','printer ls110','1999-09-09','10000000','بدون کارکرد','uhasd'),(66,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(65,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(69,'پرینتر','LTPR1','1999-09-09','10000000','بدون کارکرد',''),(63,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(137,'چک پرینتر','LTA123','2013-02-07','5000000','بدون کارکرد',''),(140,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(79,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(80,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(81,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(82,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(83,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(84,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(85,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(86,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(87,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(88,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(89,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(90,'فتوکپی','','1999-09-24','','بدون کارکرد',''),(91,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(92,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(93,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(94,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(95,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(96,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(97,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(98,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(99,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(100,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(101,'فتوکپی','','1999-09-09','','بدون کارکرد',''),(102,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(103,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(104,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(105,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(106,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(107,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(108,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(109,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(110,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(111,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(112,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(113,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(114,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(115,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(116,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(117,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(118,'فتوکپی','a','2013-02-07','s','بدون کارکرد',''),(119,'فتوکپی','a','2013-02-07','s','بدون کارکرد',''),(120,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(121,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(122,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(138,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(124,'فتوکپی','printer ls110','2013-02-07','10.000.000','بدون کارکرد',''),(125,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(126,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(127,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(128,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(129,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(130,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(131,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(132,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(133,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(134,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(135,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(136,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(142,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(143,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(144,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(145,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(146,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(147,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(148,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(149,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(150,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(151,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(152,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(153,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(154,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(155,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(156,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(157,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(158,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(160,'فتوکپی','','2013-02-07','','بدون کارکرد',''),(161,'کالای مصرفی','123','2013-02-11','10.000.000','بدون کارکرد','');
+/*!40000 ALTER TABLE `product` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2013-02-14 14:27:49
