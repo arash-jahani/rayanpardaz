@@ -57,18 +57,18 @@
                               <br>
                             <label>نوع محصول:</label>
                             <select name="producttype">
-                                <option value="فتوکپی">فتوکپی</option>
-                                <option value="پرینتر">پرینتر</option>
-                                <option value="چک پرینتر">چک پرینتر</option>
-                                <option value="فاکس">فاکس</option>
-                                <option value="پولشمار">پولشمار</option>                                    
-                                <option value="تست اسکناس">تست اسکناس</option>
-                                <option value="اسکنر">اسکنر</option>
-                                <option value="مانیتور">مانیتور</option>                                    
-                                <option value="کامپیوتر و لپ تاپ">کامپیوتر و لپ تاپ</option>
-                                <option value="ویدئو/دیتا پرژکتور">ویدئو/دیتا پرژکتور</option>
-                                <option value="صندوق فروشگاهی">صندوق فروشگاهی</option>
-                                <option value="کالای مصرفی">کالای مصرفی</option>
+                                <option value="1">فتوکپی</option>
+                                <option value="2">پرینتر</option>
+                                <option value="3">چک پرینتر</option>
+                                <option value="4">فاکس</option>
+                                <option value="6">پولشمار</option>                                    
+                                <option value="7">تست اسکناس</option>
+                                <option value="5">اسکنر</option>
+                                <option value="11">مانیتور</option>                                    
+                                <option value="10">کامپیوتر و لپ تاپ</option>
+                                <option value="9">ویدئو/دیتا پرژکتور</option>
+                                <option value="8">صندوق فروشگاهی</option>
+                                <option value="12">کالای مصرفی</option>
                             </select>
                             <label>کارکرد دستگاه:</label>
                              <select name="oldornew">

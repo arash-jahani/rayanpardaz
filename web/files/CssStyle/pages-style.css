@@ -49,10 +49,9 @@ body{
 .main-section{
     margin: 20px 220px 20px 5px;  
     width: 750px;
-    height: 750px;   
+    height: 730px;   
     border-radius: 10px;
-    float: bottom;
-    
+    float: bottom;           
 }
 .main-section > figure{
     margin: 5px 10px 10px 5px;
@@ -126,7 +125,7 @@ img.img-setsize{
 .product-nav{
     margin: 20px 5px;
     width: 200px;
-    height: 350px;
+    height: auto;
     background-color: #eee;        
     position: fixed;      
     font-family: serif;
@@ -156,6 +155,7 @@ img.img-setsize{
     background-color: blue;       
 }
 .new-product{
+    
     margin: 20px 230px 20px 10px;  
     width: 740px;
     height: auto;

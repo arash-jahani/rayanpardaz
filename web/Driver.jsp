@@ -12,23 +12,24 @@
     <head>
         <link rel="stylesheet" type="text/css" href="files/pages-style.css">       
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>لیست مشتریان</title>
+        <title>لیست درایورها</title>
     </head>
     <body>      
         <section class="page">
        <%@include file="/joint/Header.jsp" %>
-        <%@include file="/joint/linklist.jsp" %>                
+        <%@include file="/joint/linklist.jsp" %>              
         <section class="main-section"> 
             <article class="customer">                
            <%
       ProductSql customer=new ProductSql();
-      String query_customer="SELECT * FROM rayanpardaz.customer";
-      ResultSet rs_customer= customer.multisearch(query_customer);  
+      String query_driver="SELECT * FROM rayanpardaz.driver";
+      ResultSet rs_driver= customer.multisearch(query_driver); 
+      rs_driver.beforeFirst();
     %><ul><%
-    do{%>
-           <li><%=rs_customer.getString("name")%></li>
+    while(rs_driver.next()){%>
+    <li><a href="<%=rs_driver.getString("link")%>"> <%=rs_driver.getString("name") %> </a></li>
             <%
-      }while(rs_customer.next());
+      }
      %>
      </ul>
          </article>
