@@ -3,6 +3,7 @@
     Created on : Jan 25, 2013, 10:00:07 PM
     Author     : Arash
 --%>
+<%@page import="pack.ConvertDate"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="pack.ProductSql"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -34,9 +35,47 @@
      %>      
         </section>                       
            <section class="new-product">
-               <header>جدیدترین محصولات</header>
-               <article>                  
+               <header>جدیدترین محصولات</header>                               
+              <%
+         try{ 
+        ProductSql product=new ProductSql();
+        ResultSet rs_type;
+        rs_type=product.multisearch("SELECT * FROM rayanpardaz.category");
+        rs_type.beforeFirst();
+        String code="";
+        String type="";
+        while(rs_type.next()){
+            
+        code=rs_type.getString("id");  
+        type=rs_type.getString("type");
+        ConvertDate date=new ConvertDate();
+        ResultSet rs_device; 
+        rs_device=product.eachproduct("Select * from rayanpardaz.product  where type='"+code+"' ORDER BY id  DESC Limit 1");                          
+        try{
+      %>
+            
+           <%while(rs_device.next()){ %>           
+               <article class="product-price"> 
+                     <%=rs_device.getString("price") %>&nbsp;ریال
                </article>
+               <article class="each-product">
+               <article class="product-id"> 
+                    <%=rs_device.getString("id") %>
+               </article>                                        
+                    <img src="files/pics/<%=rs_device.getString("type")+".jpg"%>" width="150" height="150" >                                                                               
+                    <p><%=type %>&nbsp;<%=rs_device.getString("name") %><br>
+                     <%=rs_device.getString("oldornew") %>&nbsp;&nbsp;<%=date.getdate(rs_device.getString("date")) %>&nbsp;</p>
+                     <textarea readonly><%=rs_device.getString("des")%></textarea>                                                                        
+               </article>                    
+           <%
+       }//while
+       }catch(Exception e){
+       }           
+       
+       }//while
+       }catch(Exception ex){
+               
+        }%>            
            </section>         
         <footer> 
             <br>

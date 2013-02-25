@@ -13,6 +13,7 @@
     ProductSql product=new ProductSql();
     ResultSet rs_type;              
     rs_type=product.multisearch("SELECT * FROM rayanpardaz.category where id='"+code+"' ");
+    //rs_type.beforeFirst();
     String ProductName=rs_type.getString("type");
 %>
 <!DOCTYPE html>
@@ -31,7 +32,7 @@
            <%try{                        
         ResultSet rs_device; 
         rs_device=product.eachproduct("Select * from rayanpardaz.product where type='"+code+"'");  
-        rs_device.beforeFirst();
+       // rs_device.beforeFirst();
       %>
            <%while(rs_device.next()){%>
                <article class="product-price"> 
@@ -40,8 +41,8 @@
                <article class="each-product">
                <article class="product-id"> 
                     <%=rs_device.getString("id") %>
-               </article>                                        
-                    <img src="files/pics/Consumable.jpg" width="150" height="150" >                                                                               
+               </article>                      
+                    <img src="files/pics/<%=rs_device.getString("type")+".jpg"%>" width="150" height="150" >                                                                               
                     <p><%=ProductName %>&nbsp;<%=rs_device.getString("name") %><br>
                      <%=rs_device.getString("oldornew") %>&nbsp;&nbsp;<%=date.getdate(rs_device.getString("date")) %>&nbsp;</p>
                      <textarea readonly><%=rs_device.getString("des")%></textarea>                                                                        

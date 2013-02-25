@@ -17,9 +17,9 @@
         <section class="page">
         <nav class="main-navbar">           
             <a href="index.jsp">صفحه اصلی</a>
-            <a href="customer.jsp">لبست مشتریان</a>     
-            <a href="Driver.jsp">لبست درایورها</a> 
-            <a href="about.jsp">ارتباط با ما</a>                       
+            <a href="customer.jsp">لیست مشتریان</a>     
+            <a href="Driver.jsp">لیست درایورها</a> 
+            <a href="about.jsp">  درباره ما</a>                       
         </nav>
         <header class="page-header">
             <img src="files/pics/header.jpg">

@@ -4,6 +4,9 @@
     Author     : Arash jahani 09367857892 arash.jahani13@gmail.com
 --%>
 
+<%@page import="java.io.FileInputStream"%>
+<%@page import="java.io.FileWriter"%>
+<%@page import="java.io.InputStream"%>
 <%@page import="org.joda.time.DateTime"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
@@ -20,19 +23,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="files/manage-page-style.css">       
-        <script src="files/jquery1.9.0.js"></script>
-        <script src="files/jquary.js"></script>
+        <link rel="stylesheet" type="text/css" href="../files/CssStyle/manage-page-style.css">       
+        <script src="../files/JqueryStyle/jquery1.9.0.js"></script>
+        <script src="../files/JqueryStyle/jquary.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">                
         <title>ثبت وقایع</title>       
     </head>
     <body>  
         <%
             Cookie[] list=request.getCookies();
-            if(list !=null){
-               if((list[1].getName().equals("username"))&&(list[1].getValue().equals("admin"))&&
-                       (list[2].getName().equals("password"))&&(list[2].getValue().equals("admin"))){%>
-                   
+            if(list !=null){                
+               if((list[0].getName().equals("username"))&&(list[0].getValue().equals("1"))&&
+                       (list[1].getName().equals("password"))&&(list[1].getValue().equals("1"))){%>                   
         <section class="page">
             <details>
                 <summary id="product" >محصولات</summary>
@@ -45,15 +47,16 @@
                             </ul>
                     </nav>
                     <section class="info-section" id="info-section" >
-                        <% if(request.getParameter("submit")==null){ %> <!--barasi inke,aya karbar avalin bar ast ke varede form mishavad ya qablan niz hozr dashte-->
-                        <form class="form-Insert" method="POST" action="admin.jsp" accept-charset="UTF-8" >
+                        
+                        <% if(request.getParameter("submit")==null){ %> <!--barasi inke,aya karbar avalin bar ast ke varede form mishavad ya qablan niz hozr dashte-->                        
+                        <form class="form-Insert" method="post" action="admin.jsp" accept-charset="UTF-8"  >
                             <label class="header"> محصول جدید با شناسه :</label>                               
                             <label class="header" > 
                                 <% ProductSql lastrecord=new ProductSql();%> 
                                 <%= lastrecord.getLastRecord() %> </label>
                                 <label class="header">در :</label>
                                 <%DateTime date=new DateTime();%>    
-                                <input type="text"  name="date"  style="background-color: #eee;text-align: center;" value="<%=date.toString("yyyy-MM-dd")  %>">
+                                <input type="text"  name="date"  style="background-color: #eee;text-align: center;" value="<%=date.toString("yyyy-MM-dd") %>">
                               <br>
                             <label>نوع محصول:</label>
                             <select name="producttype">
@@ -83,18 +86,17 @@
                                 ریال<br>
                                 <label>توضیحات :</label>
                                 <textarea name="des" style="margin-right: 10px" ></textarea>
-                                <img src="C:\fakepath\iran.jpg" class="img-polaroid" ><br>
-                                <p>برای افزایش سرعت  بارگذاری،قبل از افزودن تصویر سایز حداکثر 200*200 را برای تصویر ست نمایید</p>
-                                <input type="file" accept="image/*" name="imagepath"><br>
+                                <img src="../files/productpic/NoImage.jpg" class="img-polaroid" ><br>                                
                                 <input type="submit" name="submit" value="ثبت" class="submit-btn">
-                                <input type="reset" value="پاک کردن" class="submit-btn">
-                           
+                                <input type="reset" value="پاک کردن" class="submit-btn">                           
                        </form>
-                         <%}else{        
-                     Boolean UpImageStatus=true;
-                      
-                     
-                    //Call Upload image Method                    
+                              <form action="upload.jsp" enctype="multipart/form-data" method="POST" style="margin-top: 400px">
+                                  برای افزایش سرعت  بارگذاری،قبل از افزودن تصویر سایز حداکثر 200*200 را برای تصویر ست نمایید
+                                <input type="file" accept="image/*" name="imagepath">
+                                  <input type="submit" name="submit" value="آپلود تصویر" class="submit-btn">
+                              </form>
+                         <%}else{                                                                 
+                       Boolean UpImageStatus=true;                                              
                     if(UpImageStatus.equals(true)){
                         String producttype=request.getParameter("producttype");    
                         String oldornew=request.getParameter("oldornew");
@@ -118,18 +120,18 @@
                                                   <br>
                                                 <label>نوع محصول:</label>
                                                 <select name="producttype">
-                                                    <option value="فتوکپی">فتوکپی</option>
-                                                    <option value="پرینتر">پرینتر</option>
-                                                    <option value="چک پرینتر">چک پرینتر</option>
-                                                    <option value="فاکس">فاکس</option>
-                                                    <option value="پولشمار">پولشمار</option>                                    
-                                                    <option value="تست اسکناس">تست اسکناس</option>
-                                                    <option value="اسکنر">اسکنر</option>
-                                                    <option value="مانیتور">مانیتور</option>                                    
-                                                    <option value="کامپیوتر و لپ تاپ">کامپیوتر و لپ تاپ</option>
-                                                    <option value="ویدئو/دیتا پرژکتور">ویدئو/دیتا پرژکتور</option>
-                                                    <option value="صندوق فروشگاهی">صندوق فروشگاهی</option>
-                                                    <option value="کالای مصرفی">کالای مصرفی</option>
+                                                    <option value="1">فتوکپی</option>
+                                                    <option value="2">پرینتر</option>
+                                                    <option value="3">چک پرینتر</option>
+                                                    <option value="4">فاکس</option>
+                                                    <option value="6">پولشمار</option>                                    
+                                                    <option value="7">تست اسکناس</option>
+                                                    <option value="5">اسکنر</option>
+                                                    <option value="11">مانیتور</option>                                    
+                                                    <option value="10">کامپیوتر و لپ تاپ</option>
+                                                    <option value="9">ویدئو/دیتا پرژکتور</option>
+                                                    <option value="8">صندوق فروشگاهی</option>
+                                                    <option value="12">کالای مصرفی</option>
                                                 </select>
                                                 <label>کارکرد دستگاه:</label>
                                                  <select name="oldornew">
@@ -144,12 +146,15 @@
                                                     ریال<br>
                                                     <label>توضیحات :</label>
                                                     <textarea name="des" style="margin-right: 10px" ></textarea>
-                                                    <img src="C:\fakepath\iran.jpg" class="img-polaroid" ><br>
-                                                    <p>برای افزایش سرعت  بارگذاری،قبل از افزودن تصویر سایز حداکثر 200*200 را برای تصویر ست نمایید</p>
-                                                    <input type="file" accept="image/*" name="imagepath"><br>
+                                                    <img src="../files/productpic/NoImage.jpg" class="img-polaroid" ><br>                                                    
                                                     <input type="submit" name="submit" value="ثبت" class="submit-btn">
                                                     <input type="reset" value="پاک کردن" class="submit-btn">
                                            </form>
+                                                  <form action="upload.jsp" enctype="multipart/form-data" method="POST" style="margin-top: 400px">
+                                  برای افزایش سرعت  بارگذاری،قبل از افزودن تصویر سایز حداکثر 200*200 را برای تصویر ست نمایید
+                                <input type="file" accept="image/*" name="imagepath">
+                                  <input type="submit" name="submit" value="آپلود تصویر" class="submit-btn">
+                              </form>
                                                 <%
                       if(QueryStatus.equals(true)){%>                                                                                                                        
                                                  <label class="status" >ثبت شد</label>
@@ -164,8 +169,7 @@
                            <input type="hidden" value='2' name="formname"> <!--2 for Product Edit-->
                            <input type="text" class="input-medium search-query"  name="key" style="margin-right: 200px">
                             <button type="submit">جسنجو</button><br>
-                            </form>    
-                            
+                            </form>                                
                              <% if(request.getParameter("delete")==null){ %>
                         <form class="form-Delete"  method="POST" action="admin.jsp" accept-charset="UTF-8">
                              <label class="header">  حذف </label><br>                              
@@ -191,8 +195,7 @@
              }%>
                     </section>
                 </section>
-            </details>
-          
+            </details>          
             <details id="Customer">
                 <summary id="customer" >مشتریان</summary>
                 <section class="main-section-customer">
@@ -247,11 +250,9 @@
                         <% if(QueryStatus.equals(true)){%>                                                                                                                        
                                                  <label class="status" > حذف شد</label>
                                          <% }else{%>
-                                         <label class="status" style="background-color: #ed1c24" >حذف  نشد</label>
-                                                   
+                                         <label class="status" style="background-color: #ed1c24" >حذف  نشد</label>                                                   
                             <% }}%>
-                    </section>
-                    
+                    </section>                    
                 </section>
             </details>
             <details>
@@ -280,8 +281,7 @@
                         String link=request.getParameter("link");
                         InsertQuery="INSERT INTO `rayanpardaz`.`driver` (`name`, `link`) VALUES ('"+drivername+"', '"+link+"');";         
                         QueryStatus=product.InsertDelete(InsertQuery);
-            %>
-            
+            %>            
                        <form class="form-Insert" method="POST" action="admin.jsp" accept-charset="UTF-8" >                              
                                 <label class="header">افزودن درایور جدید</label><br>                                                                                    
                                 <label>     عنوان:</label>
@@ -294,8 +294,7 @@
                                                  <label class="status" >ثبت شد</label>
                                          <% }else{%>
                                          <label class="status" style="background-color: #ed1c24" >ثبت نشد</label>                                                   
-                            <% }}%>   
-                                                       
+                            <% }}%>                                                          
                           <%if(request.getParameter("delete-link")==null){%>   
                         <form class="form-Delete"  method="POST" action="admin.jsp" accept-charset="UTF-8">
                          <label class="header"> حذف </label><br>                             
@@ -317,16 +316,14 @@
                         <% if(QueryStatus.equals(true)){%>                                                                                                                        
                                          <label class="status" > حذف شد</label>
                                          <% }else{%>
-                                         <label class="status" style="background-color: #ed1c24" >حذف  نشد</label>
-                                                   
+                                         <label class="status" style="background-color: #ed1c24" >حذف  نشد</label>                                                   
                             <% }}%>
                     </section>
                 </section>
             </details>
         </section>
                     <%
-                }else{
-                  // out.println("user");
+                }else{                  
                     response.sendRedirect("login.jsp");
                 }
             }else{

@@ -96,7 +96,8 @@ public class ProductSql {
         try {
            stmt = con.createStatement(); 
             rs = stmt.executeQuery(search_query);           
-          if(rs.next()){                                
+          if(rs.next()){
+                    //rs.beforeFirst();
                     return rs;                          
             }          
             con.close();
@@ -115,8 +116,10 @@ public class ProductSql {
         try {
            stmt = con.createStatement(); 
             rs = stmt.executeQuery(search_query);  
-            if(rs.next()!=false)
-            return rs;                                               
+            if(rs.next()!=false){
+                rs.beforeFirst();
+                return rs;           
+            }
             con.close();
             stmt.close();           
             rs.close();   

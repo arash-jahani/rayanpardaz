@@ -6,8 +6,8 @@
 <head>
 <meta charset="utf-8">
 <title>Paper Stack</title>
-<link rel="stylesheet" type="text/css" href="files/loginStyle.css" />
- <script src="files/jquary.js"></script>
+<link rel="stylesheet" type="text/css" href="../files/CssStyle/loginStyle.css" />
+
 </head>
 <body>
 <%
