@@ -26,6 +26,7 @@
         <link rel="stylesheet" type="text/css" href="../files/CssStyle/manage-page-style.css">       
         <script src="../files/JqueryStyle/jquery1.9.0.js"></script>
         <script src="../files/JqueryStyle/jquary.js"></script>
+        <script type="text/javascript" src="../files/ClientHits.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">                
         <title>ثبت وقایع</title>       
     </head>
@@ -36,8 +37,8 @@
                if((list[0].getName().equals("username"))&&(list[0].getValue().equals("1"))&&
                        (list[1].getName().equals("password"))&&(list[1].getValue().equals("1"))){%>                   
         <section class="page">
-            <details>
-                <summary id="product" >محصولات</summary>
+            
+                <header id="product" class="header-topic">محصولات</header>
                 <section class="main-section-product">
                     <nav>  
                         <ul>
@@ -46,20 +47,18 @@
                          <li class="link-Delete">حذف محصول  
                             </ul>
                     </nav>
-                    <section class="info-section" id="info-section" >
-                        
-                        <% if(request.getParameter("submit")==null){ %> <!--barasi inke,aya karbar avalin bar ast ke varede form mishavad ya qablan niz hozr dashte-->                        
-                        <form class="form-Insert" method="post" action="admin.jsp" accept-charset="UTF-8"  >
+                    <section class="info-section" id="info-section" >                                                       
+                        <form class="form-Insert"  accept-charset="UTF-8"  >
                             <label class="header"> محصول جدید با شناسه :</label>                               
-                            <label class="header" > 
+                            <label class="header" id="product-id"> 
                                 <% ProductSql lastrecord=new ProductSql();%> 
                                 <%= lastrecord.getLastRecord() %> </label>
                                 <label class="header">در :</label>
-                                <%DateTime date=new DateTime();%>    
-                                <input type="text"  name="date"  style="background-color: #eee;text-align: center;" value="<%=date.toString("yyyy-MM-dd") %>">
+                                <%DateTime now=new DateTime();%>    
+                                <input type="text"  id="date"  style="background-color: #eee;text-align: center;" value="<%=now.toString("yyyy-MM-dd") %>">
                               <br>
                             <label>نوع محصول:</label>
-                            <select name="producttype">
+                            <select  id="producttype">
                                 <option value="1">فتوکپی</option>
                                 <option value="2">پرینتر</option>
                                 <option value="3">چک پرینتر</option>
@@ -74,96 +73,32 @@
                                 <option value="12">کالای مصرفی</option>
                             </select>
                             <label>کارکرد دستگاه:</label>
-                             <select name="oldornew">
+                             <select id="oldornew">
                                 <option value='بدون کارکرد'>دستگاه بدون کارکرد</option>
                                     <option value='کارکرده'>دستگاه کارکرده</option>                                    
                             </select>
                                 <br>
                                 <label>     نام محصول:</label>
-                                <input type="text" placeholder="Typing Name" id="status" name="productname" style="margin-right: 10px;">                                                                   
+                                <input type="text" placeholder="Typing Name"  id="productname" style="margin-right: 10px;">                                                                   
                                 <label >قیمت:</label>
-                                <input type="text" placeholder="Typing Price" name="price" style="margin-right: 72px"> 
+                                <input type="text" placeholder="Typing Price" id="price" style="margin-right: 72px"> 
                                 ریال<br>
                                 <label>توضیحات :</label>
-                                <textarea name="des" style="margin-right: 10px" ></textarea>
-                                <img src="../files/productpic/NoImage.jpg" class="img-polaroid" ><br>                                
-                                <input type="submit" name="submit" value="ثبت" class="submit-btn">
-                                <input type="reset" value="پاک کردن" class="submit-btn">                           
-                       </form>
-                              <form action="upload.jsp" enctype="multipart/form-data" method="POST" style="margin-top: 400px">
+                                <textarea id="des"  ></textarea>
+                                <img src="../files/productpic/NoImage.jpg" class="img-polaroid" id="image" ><br>                                                                                                              
                                   برای افزایش سرعت  بارگذاری،قبل از افزودن تصویر سایز حداکثر 200*200 را برای تصویر ست نمایید
-                                <input type="file" accept="image/*" name="imagepath">
-                                  <input type="submit" name="submit" value="آپلود تصویر" class="submit-btn">
+                                  <input type="file" accept="image/*" id="imagepath" onchange="showimage(this);">
+                                 <input type="button" id="insert-product-submit" value="send" class="submit-btn" onclick="InsertProduct();">
+                                <input type="reset" value="پاک کردن" class="submit-btn">   
+                                <span id="status" ></span>
                               </form>
-                         <%}else{                                                                 
-                       Boolean UpImageStatus=true;                                              
-                    if(UpImageStatus.equals(true)){
-                        String producttype=request.getParameter("producttype");    
-                        String oldornew=request.getParameter("oldornew");
-                        String productname=request.getParameter("productname");
-                        String price=request.getParameter("price");
-                        String des=request.getParameter("des");
-                        String date=request.getParameter("date");
-                        String imagepath=request.getParameter("imagepath");                        
-                        InsertQuery="INSERT INTO `rayanpardaz`.`product` (`type`, `name`, `date`, `price`, `oldornew`, `des`) VALUES ('"+producttype+"', '"+productname+"',  '"+date+"', '"+price+"', '"+oldornew+"', '"+des+"');";    
-                        QueryStatus=product.InsertDelete(InsertQuery);
-                        %>
-                                                <form class="form-Insert" method="POST" action="admin.jsp" accept-charset="UTF-8" >
-                                                <label class="header"> محصول جدید با شناسه :</label>                               
-                                                <label class="header" > 
-                                                    <% ProductSql lastrecord=new ProductSql();%> 
-                                                    <%= lastrecord.getLastRecord() %> </label>
-                                                    <label class="header">در :</label>
-                                                    <%SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
-                                    Date today = new Date();  %>
-                                                    <input type="text"  name="date"  style="background-color: #eee;text-align: center;" value="<%=formatter.format(today) %>">
-                                                  <br>
-                                                <label>نوع محصول:</label>
-                                                <select name="producttype">
-                                                    <option value="1">فتوکپی</option>
-                                                    <option value="2">پرینتر</option>
-                                                    <option value="3">چک پرینتر</option>
-                                                    <option value="4">فاکس</option>
-                                                    <option value="6">پولشمار</option>                                    
-                                                    <option value="7">تست اسکناس</option>
-                                                    <option value="5">اسکنر</option>
-                                                    <option value="11">مانیتور</option>                                    
-                                                    <option value="10">کامپیوتر و لپ تاپ</option>
-                                                    <option value="9">ویدئو/دیتا پرژکتور</option>
-                                                    <option value="8">صندوق فروشگاهی</option>
-                                                    <option value="12">کالای مصرفی</option>
-                                                </select>
-                                                <label>کارکرد دستگاه:</label>
-                                                 <select name="oldornew">
-                                                    <option value='بدون کارکرد'> بدون کارکرد</option>
-                                                        <option value='کارکرده'> کارکرده</option>                                    
-                                                </select>
-                                                    <br>
-                                                    <label>     نام محصول:</label>
-                                                    <input type="text" placeholder="Typing Name" id="field" name="productname" style="margin-right: 10px;">                                                                   
-                                                    <label >قیمت:</label>
-                                                    <input type="text" placeholder="Typing Price" name="price" style="margin-right: 72px"> 
-                                                    ریال<br>
-                                                    <label>توضیحات :</label>
-                                                    <textarea name="des" style="margin-right: 10px" ></textarea>
-                                                    <img src="../files/productpic/NoImage.jpg" class="img-polaroid" ><br>                                                    
-                                                    <input type="submit" name="submit" value="ثبت" class="submit-btn">
-                                                    <input type="reset" value="پاک کردن" class="submit-btn">
-                                           </form>
-                                                  <form action="upload.jsp" enctype="multipart/form-data" method="POST" style="margin-top: 400px">
-                                  برای افزایش سرعت  بارگذاری،قبل از افزودن تصویر سایز حداکثر 200*200 را برای تصویر ست نمایید
-                                <input type="file" accept="image/*" name="imagepath">
-                                  <input type="submit" name="submit" value="آپلود تصویر" class="submit-btn">
-                              </form>
-                                                <%
-                      if(QueryStatus.equals(true)){%>                                                                                                                        
-                                                 <label class="status" >ثبت شد</label>
-                                         <% }else{%>
-                                         <label class="status" style="background-color: #ed1c24" >ثبت نشد</label>
-                                        <%}}else{%>
-                                        <label class="status" style="background-color: #ed1c24" >  اشکال در آپلود تصویر.لطفا دوباره تلاش کنید</label>   
-                                        <%}             
-              }%>
+                              
+                              
+                              
+                              
+                              
+                              
+                              
                             <form class="form-Edit"  method="POST" action="save-data.jsp" accept-charset="UTF-8">
                            <label class="header">  ویرایش </label><br>   
                            <input type="hidden" value='2' name="formname"> <!--2 for Product Edit-->
@@ -194,10 +129,9 @@
                                         <%}      
              }%>
                     </section>
-                </section>
-            </details>          
-            <details id="Customer">
-                <summary id="customer" >مشتریان</summary>
+                </section>                      
+            
+                <header id="customer" class="header-topic" >مشتریان</header>
                 <section class="main-section-customer">
                     <nav>  
                         <ul>
@@ -253,11 +187,9 @@
                                          <label class="status" style="background-color: #ed1c24" >حذف  نشد</label>                                                   
                             <% }}%>
                     </section>                    
-                </section>
-            </details>
-            <details>
-                <summary id="links">لینک درایورها</summary>
-                <section class="main-section-customer">
+                </section>            
+                <header id="links" class="header-topic">لینک درایورها</header>
+                <section class="main-section-links">
                     <nav>                        
                              <nav>  
                         <ul> 
@@ -319,9 +251,7 @@
                                          <label class="status" style="background-color: #ed1c24" >حذف  نشد</label>                                                   
                             <% }}%>
                     </section>
-                </section>
-            </details>
-        </section>
+                </section>            
                     <%
                 }else{                  
                     response.sendRedirect("login.jsp");

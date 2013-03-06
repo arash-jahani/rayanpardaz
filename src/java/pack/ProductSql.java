@@ -62,8 +62,9 @@ public class ProductSql {
             int rs=stmt.executeUpdate(query);
             stmt.close();
             con.close();
-            if(rs>0)
-            return true;
+            if(rs>0) {
+                return true;
+            }
         } catch (SQLException ex) {                       
             return false;            
         }

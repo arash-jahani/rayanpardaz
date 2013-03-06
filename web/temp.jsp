@@ -3,6 +3,12 @@
     Created on : Jan 25, 2013, 10:00:07 PM
     Author     : Arash
 --%>
+<!DOCTYPE html>
+ <link rel="stylesheet" type="text/css" href="files/CssStyle/Default.css">
+<!--[if lt IE 9]>
+       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+       <link rel="stylesheet" type="text/css" href="files/CssStyle/IE8.css">
+<![endif]-->
 <%@page import="pack.ConvertDate"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="pack.ProductSql" %>
@@ -18,21 +24,23 @@
 %>
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="files/pages-style.css">       
+    <head>               
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="files/JqueryStyle/jquery1.9.0.js"></script>
+        <script src="files/JqueryStyle/jquary.js"></script>     
         <title>ماشین های اداری رایان پرداز</title>
     </head>
     <body>      
         <section class="page">
        <%@include file="joint/Header.jsp" %>
-       <%@include file="joint/linklist.jsp" %>    
+       <%@include file="joint/linklist.jsp" %>  
+        <%@include file="/joint/leftpanel.jsp" %>
         <section class="new-product">   
-            <header><%=ProductName %></header>
+            <header><p><%=ProductName %></p></header>
            <%try{                        
         ResultSet rs_device; 
         rs_device=product.eachproduct("Select * from rayanpardaz.product where type='"+code+"'");  
-       // rs_device.beforeFirst();
+        //rs_device.beforeFirst();
       %>
            <%while(rs_device.next()){%>
                <article class="product-price"> 
@@ -42,7 +50,7 @@
                <article class="product-id"> 
                     <%=rs_device.getString("id") %>
                </article>                      
-                    <img src="files/pics/<%=rs_device.getString("type")+".jpg"%>" width="150" height="150" >                                                                               
+                    <img src="files/pics/<%=rs_device.getString("type")+".jpg"%>" width="110" height="110" >                                                                               
                     <p><%=ProductName %>&nbsp;<%=rs_device.getString("name") %><br>
                      <%=rs_device.getString("oldornew") %>&nbsp;&nbsp;<%=date.getdate(rs_device.getString("date")) %>&nbsp;</p>
                      <textarea readonly><%=rs_device.getString("des")%></textarea>                                                                        
@@ -51,7 +59,8 @@
        }catch(Exception ex){%>
                                                    
         <%}%>
-        </section>         
+        </section>   
+        
         <footer> 
             <br>
             <h4>آدرس: قزوین، خیابان فلسطین شرقی، نرسیده به توحید، روبروی نانوایی بربری پلاک 71 <br>تلفکس: 02813358124 &nbsp;&nbsp;&nbsp;تلفن: 09102081638</h4>                 

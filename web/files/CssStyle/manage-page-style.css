@@ -22,12 +22,27 @@ summary{
     color: #2f96b4;
     
 }
+.header-topic{
+    width: 100%;
+    height: 30px;
+    background-color: #777;
+    border-radius: 1px;
+    font-family: "tahoma";
+    font-size: 20px;
+    color: white;
+    text-align: center;
+}
 .main-section-product{
     direction: ltr;
     width: 100%;
     height: 500px;    
 }
 .main-section-customer{
+    direction: ltr;
+    width: 100%;
+    height: 200px;    
+}
+.main-section-links{
     direction: ltr;
     width: 100%;
     height: 200px;    
@@ -137,7 +152,8 @@ label {
 textarea{
     width:345px;
     height: 162px;
-        
+    margin-right: 10px;
+    resize: none;    
 }
 
 textarea,
@@ -268,11 +284,12 @@ textarea::-webkit-input-placeholder {
     width: 150px;
     height: 150px;
     border-radius: 10px;   
-  padding: 10px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border: 1px solid rgba(0, 0, 1, 0.2);
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin-left: 65px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 1, 0.2);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
      -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
           box-shadow: 0 1px 3px rgba(0, 0, 2, 0.1);
 }
