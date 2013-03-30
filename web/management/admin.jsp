@@ -36,21 +36,34 @@
             if(list !=null){                
                if((list[0].getName().equals("username"))&&(list[0].getValue().equals("1"))&&
                        (list[1].getName().equals("password"))&&(list[1].getValue().equals("1"))){%>                   
-        <section class="page">
-            
-                <header id="product" class="header-topic">محصولات</header>
-                <section class="main-section-product">
-                    <nav>  
+        <section class="page">                            
+                <section class="main-section">
+                    <article class="panel">  
                         <ul>
-                        <li class="link-Insert">افزودن محصول جدید </li>
-                        <li class="link-Edit">                            ویرایش اطلاعات محصول
-                         <li class="link-Delete">حذف محصول  
+                            <li>محصولات</li>
+                            <ul>
+                                <li class="product-Insert">افزودن محصول جدید </li>                                 
+                                <li class="product-Edit">                            ویرایش اطلاعات محصول
+                                <li class="product-Delete">حذف محصول  
+                                 <li class="image-Insert">افزودن تصویر </li>
+                                 <li class="image-Delete">حذف تصویر </li>
                             </ul>
-                    </nav>
-                    <section class="info-section" id="info-section" >                                                       
-                        <form class="form-Insert"  accept-charset="UTF-8" enctype="multipart/form-data" >
+                            <li>مشتریان</li>
+                            <ul>
+                                <li class="customer-Insert">افزودن مشتری جدید </li>
+                                <li class="customer-Delete">حذف مشتری  
+                            </ul>
+                            <li>لینک ها</li>
+                            <ul> 
+                                <li class="link-Insert">افزودن 
+                                <li class="link-Delete">حذف  
+                           </ul>
+                        </ul>
+                    </article>
+                    <section class="info-section"  >                                                       
+                        <form class="product-form-Insert"  accept-charset="UTF-8" enctype="multipart/form-data" >
                             <label class="header"> محصول جدید با شناسه :</label>                               
-                            <label class="header" id="product-id"> 
+                            <label class="header" id="product-id" > 
                                 <% ProductSql lastrecord=new ProductSql();%> 
                                 <%= lastrecord.getLastRecord() %> </label>
                                 <label class="header">در :</label>
@@ -71,7 +84,7 @@
                                 <option value="9">ویدئو/دیتا پرژکتور</option>
                                 <option value="8">صندوق فروشگاهی</option>
                                 <option value="12">کالای مصرفی</option>
-                            </select>
+                            </select><br>
                             <label>کارکرد دستگاه:</label>
                              <select id="oldornew">
                                 <option value='بدون کارکرد'>دستگاه بدون کارکرد</option>
@@ -79,85 +92,73 @@
                             </select>
                                 <br>
                                 <label>     نام محصول:</label>
-                                <input type="text" placeholder="Typing Name"  id="productname" style="margin-right: 10px;">                                                                   
+                                <input type="text" placeholder="Typing Name"  id="productname"><br>                                                                   
                                 <label >قیمت:</label>
-                                <input type="text" placeholder="Typing Price" id="price" style="margin-right: 72px"> 
+                                <input type="text" placeholder="Typing Price" id="price" > 
                                 ریال<br>
                                 <label>توضیحات :</label>
-                                <textarea id="des"  ></textarea>
-                                <img src="" class="img-polaroid" id="image" ><br>                                                                                                              
-                                  برای افزایش سرعت  بارگذاری،قبل از افزودن تصویر سایز حداکثر 200*200 را برای تصویر ست نمایید
-                                  <input type="file" accept=".jpg" id="imagepath" onchange="showimage(this);">
+                                <textarea id="des"  ></textarea><br>                
                                  <input type="button" id="insert-product-submit" value="ارسال" class="submit-btn" onclick="InsertProduct();">
                                 <input type="reset" value="پاک کردن" class="submit-btn">   
                                 <span id="status" ></span>
                               </form>
+                             
+                              <form class="image-form-Insert" accept-charset="UTF-8" action="" method="POST">                                                                                                                                           
+                                    <p style="margin-right: 10px">                                  برای افزایش سرعت  بارگذاری،قبل از افزودن تصویر سایز حداکثر 200*200 را برای تصویر ست نمایید</p>
+                                    <input type="file" accept=".jpg" id="imagepath" onchange="showimage(this);" style="margin-right: 10px">
+                                    <img src="" class="img-polaroid" id="image" > 
+                              </form>   
+                             
+                              <form class="product-image-Delete"  accept-charset="UTF-8">
+                                     <label class="header">  حذف تصویر </label>  <br>                            
+                                     <input type="text" class="input-medium search-query"  id="" >
+                                     <input type="button" id="" value="حذف" class="submit-btn" onclick="">
+                                     <span id="Delete-status" ></span>
+                            </form>
                               
-                           <form class="form-Edit" accept-charset="UTF-8" action="editproduct.jsp" method="POST">
-                               <label class="header">  ویرایش </label>                              
-                               <input type="text" class="input-medium search-query"  name="key" style="margin-right: 200px">
-                               <input type="submit"  value="Search" class="submit-btn">
+                           <form class="product-form-Edit" accept-charset="UTF-8" action="editproduct.jsp" method="POST">
+                               <label class="header">  ویرایش محصول </label><br>                              
+                               <input type="text" class="input-medium search-query"  name="key" >
+                               <input type="submit"  value="بیاب" class="submit-btn">
                             </form>                             
                                                                                                                                                
-                        <form class="form-Delete"  method="POST" action="admin.jsp" accept-charset="UTF-8">
-                             <label class="header">  حذف </label>                              
-                            <input type="text" class="input-medium search-query"  id="key" style="margin-right: 200px">
-                            <input type="button" id="Delete-product-submit" value="حذف" class="submit-btn" onclick="DeleteProduct();">
+                        <form class="product-form-Delete"  accept-charset="UTF-8">
+                             <label class="header">  حذف محصول </label>  <br>                            
+                            <input type="text" class="input-medium search-query"  id="key" >
+                            <input type="button" id="Delete-product-submit" value="بیاب" class="submit-btn" onclick="DeleteProduct();">
                             <span id="Delete-status" ></span>
                         </form>                        
-                    </section>
-                </section>                      
-            
-                <header id="customer" class="header-topic" >مشتریان</header>
-                <section class="main-section-customer">
-                    <nav>  
-                        <ul>
-                            <li class="link-Insert">افزودن مشتری جدید </li>
-                            <li class="link-Delete">حذف مشتری  
-                        </ul>
-                    </nav>
-                    <section class="info-section">                        
-                            <form class="form-Insert"  accept-charset="UTF-8" >                                
-                                <label class="header">افزودن مشتری به لیست </label><br>                                                                                    
-                                <label>     نام مشتری:</label>
-                                <input type="text" placeholder="Typing Name"  id="customername" style="width: 400px"> <br>
-                                <input type="button" id="Insert-custome-submit" value="ارسال" class="submit-btn" onclick="InsertCustomer();">
-                                <span id="Customer_insert_status" ></span>
+                    
+                                                                           
+                    <form class="customer-form-Insert"  accept-charset="UTF-8" >                                
+                        <label class="header">افزودن مشتری  </label><br>                                                                                    
+                        <label>     نام مشتری:</label>
+                        <input type="text" placeholder="Typing Name"  id="customername" style="width: 400px"> <br>
+                        <input type="button" id="Insert-custome-submit" value="ارسال" class="submit-btn" onclick="InsertCustomer();">
+                        <span id="Customer_insert_status" ></span>
                        </form>                                                                         
-                        <form class="form-Delete"  accept-charset="UTF-8">
-                           <label class="header">  حذف مشتری از لیست </label><br>   
+                        <form class="customer-form-Delete"  accept-charset="UTF-8">
+                           <label class="header">  حذف مشتری  </label><br>   
                            <label>     نام مشتری:</label>
                            <input type="text" placeholder="Typing Name" id="customernamed" style="width: 400px"> <br>
                            <input type="button" id="Delete-customer-submit" value="حذف" class="submit-btn" onclick="DeleteCustomer();">
                            <span id="customer_delete_status" ></span>
                         </form>                           
-                    </section>                    
-                </section>            
-                <header id="links" class="header-topic">لینک درایورها</header>
-                <section class="main-section-links">
-                    <nav>                        
-                             <nav>  
-                        <ul> 
-                            <li class="link-Insert">درج 
-                            <li class="link-Delete">حذف  
-                         </ul>
-                    </nav>                                                  
-                    </nav>
-                    <section class="info-section">                         
-                            <form class="form-Insert" method="POST"  >                                
-                                <label class="header">افزودن درایور جدید</label><br>                                                                                    
+                                                                                                       
+                            <form class="link-form-Insert"  accept-charset="UTF-8" >                                
+                                <label class="header">افزودن لینک </label><br>                                                                                    
                                 <label>     عنوان:</label>
-                                <input type="text" placeholder="Typing Name" id="drivername" style="width: 400px"> <br>
+                                <input type="text" placeholder="Typing Name" id="drivername" > <br>
                                 <label>     لینک:</label>
-                                <input type="text" placeholder="Typing Name" id="link" style="margin-right:5px ;width: 400px"> <br>
+                                <input type="text" placeholder="Typing Name" id="link" > <br>
                                 <input type="button"  value= "ارسال " class="submit-btn" onclick="InsertLink();">
                                 <span id="link_insert_status" ></span>
                        </form>
                                                                                                              
-                        <form class="form-Delete"  method="POST" >
-                         <label class="header"> حذف </label><br>                             
+                        <form class="link-form-Delete"  method="POST" >
+                         <label class="header"> حذف لینک </label><br>                             
                          <label>     عنوان:</label>
-                         <input type="text" placeholder="Typing Name" id="drivernamed" style="width: 400px"> <br>
+                         <input type="text" placeholder="Typing Name" id="drivernamed" > <br>
                          <input type="button"  value= "حذف" class="submit-btn" onclick="DeleteLink();">
                          <span id="link-delete-status" ></span>
                         </form>

@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Arash
@@ -21,7 +20,7 @@ public class ProductSql {
     private void CreateConnection(){
         try {
             Class.forName(DriverName);
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex) {            
             JOptionPane.showMessageDialog(null, "Mysql Driver Not Support!", "Error", JOptionPane.ERROR_MESSAGE, null);
         }
         try {
@@ -46,13 +45,10 @@ public class ProductSql {
             rs.close();
             stmt.close();
             con.close(); 
-        } catch (SQLException ex) {
-              
+        } catch (SQLException ex) {              
         }
         return lastrecord+1;
-    }
-    
-    
+    }        
     public Boolean InsertDelete(String query){
         
         CreateConnection();

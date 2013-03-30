@@ -14,15 +14,14 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 
 /*  Kavenegar API Java Sample Code - version 1  */
 public class App {
-
     public static void main(String[] args) {
         try {
-            System.out.println("===========================================================================");
-            System.out.println("Sample running");
+//            System.out.println("===========================================================================");
+//            System.out.println("Sample running");
 
             //Ersale Sade va Ersale Gorohi =================================================================================================//
 //
-            JsonObject send_result = Send(new Message("Salam", "09367857892", "10009000080000"));
+//            JsonObject send_result = Send(new Message("سلام", "09367857892", "10009000080000"));
 //            JsonObject sendarray_result = SendArray(new Message[]{new Message("Hello", "09360462966", "30001528961415"), new Message("World", "09360462965", "30001528961414")});
 //            // Check Kardane Vaziyate Payam ( Delivery ) =======================================================================================//
 //            if (send_result != null) {
@@ -36,16 +35,14 @@ public class App {
             ex.printStackTrace();
         }
     }
-
     public static JsonObject Send(Message msg) {
         try {
-            String url = ApiHelper.getApiPath("sms", "send");
-            UrlEncodedFormEntity params = ApiHelper.createParams("sender", msg.getSender(), "receptor", msg.getReceptor(), "message", msg.getMessage(), "date", msg.getDate());
-            HttpResponse response = RestHelper.doPost(url, params);
-            // dar in if check mishavad ke request e ersale shode ba movafaghiyat ejra shode bashad
+            String url = ApiHelper.getApiPath("sms", "send");            
+            UrlEncodedFormEntity params = ApiHelper.createParams("sender", msg.getSender(), "receptor", msg.getReceptor(), "message", msg.getMessage(), "date", msg.getDate());            
+            HttpResponse response = RestHelper.doPost(url, params);            
             JsonObject result = ApiHelper.getResult(response);
             JsonObject jsonResult = ApiHelper.getJsonResult(result);
-            System.out.println(jsonResult.toString());
+            //System.out.println(jsonResult.toString());
             return null;
         } catch (Exception ex) {
             System.out.println(ex.getMessage());

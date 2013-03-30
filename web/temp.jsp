@@ -33,8 +33,7 @@
     <body>      
         <section class="page">
        <%@include file="joint/Header.jsp" %>
-       <%@include file="joint/linklist.jsp" %>  
-        <%@include file="/joint/leftpanel.jsp" %>
+       <%@include file="joint/linklist.jsp" %>         
         <section class="new-product">   
             <header><p><%=ProductName %></p></header>
            <%try{                        

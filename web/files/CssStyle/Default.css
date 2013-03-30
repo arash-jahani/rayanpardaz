@@ -14,8 +14,8 @@ body{
     margin: 0 5px 0 5px;
     direction: rtl;
     background-color: white;
-    font-family: "tahoma",sans-serif;
-    font-size: 13px;
+    font-family: tahoma,sans-serif;
+    font-size: 12px;
 }
 .page{
     width: 996px;
@@ -24,26 +24,35 @@ body{
 .main-navbar{    
     width: 100%;
     height: 40px;
-    background-color: #fff; 
+    background-color: #ac6f65; 
     text-align: center;
     font-family: serif;
-    font-size: 20px;    
-    margin-top: 5px;        
+    font-size: 20px;        
+    margin-right: -5px;
+    position: absolute;
+    display: table;
 }
-.main-navbar > a{
+.main-navbar div{
+    vertical-align: middle;
+    display: table-cell; 
+    background-color: #ac6f65;
+}
+.main-navbar  a{
     text-decoration: none; 
-    color: #bd362f;
-    padding:0px 10px 0px 10px;            
+    text-align: center;
+    color: white;
+    margin: 0px 15px 15px 0px;    
+    
 }
-.main-navbar > a:hover{
-    border-bottom: 3px solid #bd362f;           
+.main-navbar  a:hover{          
     color: #00aeef;
 }
 .page-header,
-.page-header>img
+.page-header img
 {
     width: 100%;
-    height: 200px;    
+    height: 200px;
+    padding-top: 20px;
     
 }
 .main-section{
@@ -53,7 +62,7 @@ body{
     border-radius: 10px;
     float: bottom;           
 }
-.main-section > figure{
+.main-section   figure{
     margin: 5px 10px 10px 5px;
     float: left;
     width:150px;
@@ -61,7 +70,7 @@ body{
     float: left; 
     
 }
-.main-section > figure:hover{
+.main-section   figure:hover{
   opacity: 0.9;
   border-radius: 10px;
   padding: 10px;
@@ -73,7 +82,7 @@ body{
           box-shadow: 0 1px 3px rgba(0, 0, 2, 0.1);
     
 }
-.main-section > figure>figcaption{    
+.main-section   figure figcaption{    
     width: 100%;
     height:20%;       
     background-color: #eee;
@@ -83,26 +92,26 @@ body{
     font-weight: bold;
     text-align: center;
 }
-.main-section > figure>figcaption>a{    
+.main-section   figure figcaption a{    
      text-decoration: none;
      vertical-align: middle;
      color: #00aeef;
 }
-.main-section > figure>figcaption>a:hover{    
+.main-section   figure figcaption a:hover{    
      text-decoration: none;
      vertical-align: middle;
      color: #bd362f;
 }
-.customer>ul>li{
+.customer ul li{
     font-family: cursive;
     font-size: 18px;
     margin-right: 30px;
 }
 
-.customer>form{
+.customer form{
     padding-right: 50px;
 }
-.customer>form>input[type="text"],textArea,label{
+.customer form input[type="text"],textArea,label{
     width: 200px;
     font-size: 15px;
     font-weight: bold;
@@ -137,17 +146,17 @@ img.img-setsize{
     overflow: visible; 
     float: bottom;
 }
-.product-nav > ul{
+.product-nav   ul{
     color:white;    
 } 
-.product-nav > ul:hover{
+.product-nav   ul:hover{
     color:#eee;    
 }
-.product-nav > ul>li>a{
+.product-nav   ul li a{
     text-decoration: none;
     color: #777777;     
 } 
-.product-nav > ul>li>a:hover{
+.product-nav   ul li a:hover{
     text-decoration: none;
     color: #bd362f;     
 } 
@@ -164,7 +173,7 @@ img.img-setsize{
     overflow: visible;
     border-radius: 10px;    
 }
-.new-product>header{
+.new-product header{    
     width: 100%;
     height: 30px;    
     vertical-align: middle;
@@ -174,7 +183,13 @@ img.img-setsize{
     font-weight: bold;
     background-color: #eee;
     border-radius: 10px;  
+    display: table;
 }
+.new-product header p{
+    display: table-cell;
+    vertical-align: middle;
+    color: #ac6f65;
+}    
 .product-price{
     width: 200px;
     height: 60px;
@@ -204,7 +219,7 @@ img.img-setsize{
     background-color: white;
     border-top: 2px solid;        
 }
-.each-product>p
+.each-product p
 {    
    padding-top:15px ;
    margin-right: 200px;
@@ -212,7 +227,7 @@ img.img-setsize{
    line-height: 30px;
    
 }
-.each-product>textArea{ 
+.each-product textArea{ 
     border:none;
     width:280px;
     height: 100px;
@@ -220,7 +235,7 @@ img.img-setsize{
     margin-top: -100px;    
    resize: none;      
 }
-.each-product>textArea:focus{
+.each-product textArea:focus{
    outline: none;
 }
 textArea::-webkit-scrollbar {
@@ -237,7 +252,7 @@ textArea::-webkit-scrollbar-thumb {
     -webkit-box-shadow: inset 0 0 6px rgba(0,160,255,0.6); 
     color: red;
 }
-.each-product>img{    
+.each-product img{    
     width:120px;
     height: 120px;
     margin: -10px 20px 0px 0px;
@@ -245,7 +260,7 @@ textArea::-webkit-scrollbar-thumb {
     border:10px solid #00aeef;
     float: right;
 }
-.each-product>img:hover{ 
+.each-product img:hover{ 
     width:170px;
     height: 165px;
     border-radius: 10px;
@@ -290,12 +305,12 @@ footer{
      -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
           box-shadow: 0 1px 3px rgba(0, 0, 2, 0.1);
 }
-.link>a{
+.link a{
     color:#777777;
     text-decoration: none;
     margin-top: 5px;
 }
-.link>a:hover{
+.link a:hover{
     text-decoration: none;
     color:#00aeef;
 }
@@ -327,7 +342,13 @@ footer{
 .full-circle:hover {    
  border: 2px solid red;
 }
-.full-circle >a>img{
+.full-circle  a img{
     margin: 10px;
 }
-
+.customer ul li {    
+    color: #eee;
+}
+.customer ul li a{
+    text-decoration: none;
+    color: #ac6f65;
+}

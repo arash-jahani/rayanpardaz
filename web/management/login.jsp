@@ -14,25 +14,29 @@
     String username=request.getParameter("Username");
     String password=request.getParameter("Password");
     if((username !=null)&&(password!=null)){
+        if(username.equals("1")&&(password.equals("1"))){
         Cookie usercook=new Cookie("username", username);
         Cookie passcook=new Cookie("password", password);
         response.addCookie(usercook);
         response.addCookie(passcook);
         response.sendRedirect("admin.jsp");
+        }else{
+            response.sendRedirect("login.jsp");
+        }
     }else{%>
     <section class="container">
         <article id="content">
             <form method="Post" action="login.jsp">
-			<h1>Login Form</h1>
-			<div>
-				<input type="text" placeholder="Username" name="Username" required="" id="username" />
-			</div>
-			<div>
-				<input type="password" placeholder="Password" required="" name="Password" id="password" />
-			</div>
-			<div>
-				<input type="submit" value="Log in"/>
-			</div>
+                    <h1>Login Form</h1>
+                    <div>
+                            <input type="text" placeholder="Username" name="Username" required="" id="username" />
+                    </div>
+                    <div>
+                            <input type="password" placeholder="Password" required="" name="Password" id="password" />
+                    </div>
+                    <div>
+                            <input type="submit" value="Log in"/>
+                    </div>
 	</form><!-- form -->		
         </article><!-- content -->
     </section><!-- container -->

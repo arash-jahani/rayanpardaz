@@ -12,10 +12,13 @@
 <%@page import="pack.ProductSql"%>
 <%@page import="java.io.File"%>
 
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    request.setCharacterEncoding("UTF-8");        
+    request.setCharacterEncoding("UTF-8");
+    Cookie[] list=request.getCookies();
+    if(list !=null){                
+       if((list[0].getName().equals("username"))&&(list[0].getValue().equals("1"))&&
+               (list[1].getName().equals("password"))&&(list[1].getValue().equals("1"))){
 %>
 <!DOCTYPE html> 
 <html>    
@@ -43,48 +46,45 @@
                     SearchQuery="Select * from rayanpardaz.category where id='"+rs.getString("type")+"' ";                       
                     type_rs=product.search(SearchQuery);
                 %>                                       
-                 <section class="main-section-product">
-                                            <section class="info-section" >                            
-                <form class="form-Edit" accept-charset="UTF-8" id="search-product" >                                                 
-                                                <label class="header">ویرایش محصول به شناسه</label>                                               
-                                                <input type="text" id="key" style="background-color: #eee;text-align: center;border:none;width:70px;" value="<%=key %>" readonly>                                                
-                                               <br> <label>نوع محصول:</label>
-                                                <select id="producttype">
-                                                    <option value="<%=rs.getString("type")%>" selected="selected"><%=type_rs.getString("type")%> </option>
-                                                    <option value="1">فتوکپی</option>
-                                                    <option value="2">پرینتر</option>
-                                                    <option value="3">چک پرینتر</option>
-                                                    <option value="4">فاکس</option>
-                                                    <option value="6">پولشمار</option>                                    
-                                                    <option value="7">تست اسکناس</option>
-                                                    <option value="5">اسکنر</option>
-                                                    <option value="11">مانیتور</option>                                    
-                                                    <option value="10">کامپیوتر و لپ تاپ</option>
-                                                    <option value="9">ویدئو/دیتا پرژکتور</option>
-                                                    <option value="8">صندوق فروشگاهی</option>
-                                                    <option value="12">کالای مصرفی</option>
-                                                </select>
-                                                <label>کارکرد دستگاه:</label>
-                                                 <select id="oldornew">
-                                                       <option value="<%=rs.getString("oldornew")%>" selected="selected"> <%=rs.getString("oldornew")%></option>
-                                                       <option value='  بدون کارکرد'> بدون کارکرد</option>
-                                                       <option value='  کارکرده'> کارکرده</option>                                    
-                                                </select><br>
-                                                <label>     نام محصول:</label>
-                                                <input type="text" placeholder="Typing Name" id="productname" value=" <%=rs.getString("name")%>" style="margin-right: 10px;">                                                                   
-                                                <label>قیمت:</label>
-                                                <input type="text" placeholder="Typing Price" id="price" value=" <%=rs.getString("price")%>" style="margin-right: 72px">ریال <br>                                                
-                                                <label>توضیحات :</label>
-                                                <textarea id="des" style="margin-right: 10px"> <%=rs.getString("des")%></textarea>                                                                                                                     
-                                                <img src="../files/productpic/<%=rs.getString("id")+".jpg" %>" class="img-polaroid" id="image" ><br>
-                                                <p>برای افزایش سرعت  بارگذاری،قبل از افزودن تصویر سایز حداکثر 200*200 را برای تصویر ست نمایید</p>
-                                                <input type="file" accept=".jpg" id="imagepath" onchange="showimage(this);">
-                                                <input type="button" id="edit-product-submit" value="send" class="submit-btn" onclick="EditProduct();">
-                                                <input type="reset" value="پاک کردن" class="submit-btn">   
-                                                <span id="status" ></span>   
-                                            </form>
-                                           </section>
-                                        </section>
+                <section class="main-section" style="margin-right: -100px">
+                    <section class="info-section" >                            
+                        <form class="form-Edit" accept-charset="UTF-8" id="search-product" >                                                 
+                                <label class="header">ویرایش محصول به شناسه</label>                                               
+                                <input type="text" id="key" style="background-color: #eee;text-align: center;border:none;width:70px;margin-right: 20px" value="<%=key %>" readonly >                                                
+                               <br> <label>نوع محصول:</label>
+                                <select id="producttype">
+                                    <option value="<%=rs.getString("type")%>" selected="selected"><%=type_rs.getString("type")%> </option>
+                                    <option value="1">فتوکپی</option>
+                                    <option value="2">پرینتر</option>
+                                    <option value="3">چک پرینتر</option>
+                                    <option value="4">فاکس</option>
+                                    <option value="6">پولشمار</option>                                    
+                                    <option value="7">تست اسکناس</option>
+                                    <option value="5">اسکنر</option>
+                                    <option value="11">مانیتور</option>                                    
+                                    <option value="10">کامپیوتر و لپ تاپ</option>
+                                    <option value="9">ویدئو/دیتا پرژکتور</option>
+                                    <option value="8">صندوق فروشگاهی</option>
+                                    <option value="12">کالای مصرفی</option>
+                                </select><br>
+                                <label>کارکرد دستگاه:</label>
+                                 <select id="oldornew">
+                                       <option value="<%=rs.getString("oldornew")%>" selected="selected"> <%=rs.getString("oldornew")%></option>
+                                       <option value='  بدون کارکرد'> بدون کارکرد</option>
+                                       <option value='  کارکرده'> کارکرده</option>                                    
+                                </select><br>
+                                <label>     نام محصول:</label>
+                                <input type="text" placeholder="Typing Name" id="productname" value=" <%=rs.getString("name")%>" >  <br>
+                                <label>قیمت:</label>
+                                <input type="text" placeholder="Typing Price" id="price" value=" <%=rs.getString("price")%>" style="margin-left: 10px" >ریال <br>                                                
+                                <label>توضیحات :</label>
+                                <textarea id="des" > <%=rs.getString("des")%></textarea> <br>                                                                                                                                                                    
+                                <input type="button" id="edit-product-submit" value="ثبت" class="submit-btn" onclick="EditProduct();">
+                                <input type="reset" value="پاک کردن" class="submit-btn">   
+                                <span id="status" ></span>   
+                            </form>
+                           </section>
+                        </section>
                                  <%}else{%>
                                          <section class="main-section">
                                             <section class="info-section" >                                                                                                
@@ -94,7 +94,12 @@
                                     <%} 
             
             
-                                   
+        }else{                  
+            response.sendRedirect("login.jsp");
+        }
+        }else{      
+            response.sendRedirect("login.jsp");
+        }               
                     %>
 
         </section>

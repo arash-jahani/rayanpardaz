@@ -15,7 +15,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="files/pages-style.css">       
+        <link rel="stylesheet" type="text/css" href="files/CssStyle/Default.css">       
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="files/JqueryStyle/jquery1.9.0.js"></script>
         <script src="files/JqueryStyle/jquary.js"></script>     
@@ -24,8 +24,7 @@
     <body>      
         <section class="page">
        <%@include file="/joint/Header.jsp" %>
-        <%@include file="/joint/linklist.jsp" %>    
-         <%@include file="/joint/leftpanel.jsp" %>
+        <%@include file="/joint/linklist.jsp" %>            
         <section class="main-section"> 
             <article class="customer">                
            <%

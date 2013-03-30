@@ -1,47 +1,112 @@
-  //be mahze focus shodan bar roye Summery mahsolat faqat baskhshe darke mahsolate jadid nemayesh dade shavad
-  
-  $(document).ready(function(){
-  $(".main-section-product").slideUp('slow');
-  $(".main-section-customer").slideUp('slow');
-  $(".main-section-links").slideUp('slow');
-  
-  $("#product").click(function(){
-      $(".main-section-product").slideToggle('slow');
-      $(".form-Insert").show();
-      $(".form-Delete").hide();
-      $(".form-Edit").hide();   
-  });
-  $("#customer").click(function(){
-      $(".main-section-customer").slideToggle('slow');
-      $(".form-Insert").show();
-    $(".form-Delete").hide();
-  });
-  
-  $("#links").click(function(){
-      $(".main-section-links").slideToggle('slow');
-      $(".form-Insert").show();
-      $(".form-Delete").hide();    
-  });
-});  
-   
-   
-// 3 mojmoe dastorate zir baraye namayesh form hayi ke bar roye yek dighar qarar darand
+        
 $(document).ready(function(){
-  
-  $(".link-Insert").click(function(){
-     $(".form-Delete").hide();
-     $(".form-Edit").hide();
-     $(".form-Insert").show();
+  $(".product-form-Insert").show();  
+  $(".product-form-Edit").hide();
+  $(".product-form-Delete").hide();
+  $(".customer-form-Insert").hide();
+  $(".customer-form-Delete").hide(); 
+  $(".link-form-Insert").hide(); 
+  $(".link-form-Delete").hide(); 
+  $(".image-form-Insert").hide();
+  $(".product-image-Delete").hide();
+  $(".product-Insert").click(function(){
+      $(".product-form-Insert").show();  
+      $(".product-form-Edit").hide();
+      $(".product-form-Delete").hide();
+      $(".customer-form-Insert").hide();
+      $(".customer-form-Delete").hide(); 
+      $(".link-form-Insert").hide(); 
+      $(".link-form-Delete").hide(); 
+      $(".image-form-Insert").hide();
+      $(".product-image-Delete").hide();
   });
-  $(".link-Edit").click(function(){
-     $(".form-Insert").hide();
-     $(".form-Delete").hide();          
-     $(".form-Edit").show();         
+  $(".product-Edit").click(function(){
+      $(".product-form-Insert").hide();  
+      $(".product-form-Edit").show();
+      $(".product-form-Delete").hide();
+      $(".customer-form-Insert").hide();
+      $(".customer-form-Delete").hide(); 
+      $(".link-form-Insert").hide(); 
+      $(".link-form-Delete").hide(); 
+      $(".image-form-Insert").hide();
+      $(".product-image-Delete").hide();
+  });
+  $(".product-Delete").click(function(){
+      $(".product-form-Insert").hide();  
+      $(".product-form-Edit").hide();
+      $(".product-form-Delete").show();
+      $(".customer-form-Insert").hide();
+      $(".customer-form-Delete").hide(); 
+      $(".link-form-Insert").hide(); 
+      $(".link-form-Delete").hide();
+      $(".image-form-Insert").hide();
+      $(".product-image-Delete").hide();
+  });
+  $(".customer-Insert").click(function(){
+      $(".product-form-Insert").hide()  ;
+      $(".product-form-Edit").hide();
+      $(".product-form-Delete").hide();
+      $(".customer-form-Insert").show();
+      $(".customer-form-Delete").hide(); 
+      $(".link-form-Insert").hide(); 
+      $(".link-form-Delete").hide();
+      $(".image-form-Insert").hide();
+      $(".product-image-Delete").hide();
+  });
+  $(".customer-Delete").click(function(){
+      $(".product-form-Insert").hide()  ;
+      $(".product-form-Edit").hide();
+      $(".product-form-Delete").hide();
+      $(".customer-form-Insert").hide();
+      $(".customer-form-Delete").show(); 
+      $(".link-form-Insert").hide(); 
+      $(".link-form-Delete").hide(); 
+      $(".image-form-Insert").hide();
+      $(".product-image-Delete").hide();
+  });
+  $(".link-Insert").click(function(){
+      $(".product-form-Insert").hide();
+      $(".product-form-Edit").hide();
+      $(".product-form-Delete").hide();
+      $(".customer-form-Insert").hide();
+      $(".customer-form-Delete").hide(); 
+      $(".link-form-Insert").show(); 
+      $(".link-form-Delete").hide(); 
+      $(".image-form-Insert").hide();
+      $(".product-image-Delete").hide();
   });
   $(".link-Delete").click(function(){
-     $(".form-Insert").hide();
-     $(".form-Edit").hide();        
-     $(".form-Delete").show();
+      $(".product-form-Insert").hide();
+      $(".product-form-Edit").hide();
+      $(".product-form-Delete").hide();
+      $(".customer-form-Insert").hide();
+      $(".customer-form-Delete").hide(); 
+      $(".link-form-Insert").hide() ;
+      $(".link-form-Delete").show(); 
+      $(".image-form-Insert").hide();
+      $(".product-image-Delete").hide();
+  });
+  $(".image-Insert").click(function(){
+      $(".product-form-Insert").hide();
+      $(".product-form-Edit").hide();
+      $(".product-form-Delete").hide();
+      $(".customer-form-Insert").hide();
+      $(".customer-form-Delete").hide(); 
+      $(".link-form-Insert").hide() ;
+      $(".link-form-Delete").hide() ;
+      $(".image-form-Insert").show();
+      $(".product-image-Delete").hide();
+  });
+  $(".image-Delete").click(function(){
+      $(".product-form-Insert").hide();
+      $(".product-form-Edit").hide();
+      $(".product-form-Delete").hide();
+      $(".customer-form-Insert").hide();
+      $(".customer-form-Delete").hide(); 
+      $(".link-form-Insert").hide() ;
+      $(".link-form-Delete").hide() ;
+      $(".image-form-Insert").hide();
+      $(".product-image-Delete").show();
   });
 });
 //$(document).ready(function(){

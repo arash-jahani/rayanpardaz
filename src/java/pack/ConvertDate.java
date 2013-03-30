@@ -4,9 +4,7 @@
  */
 package pack;
 
-import com.sun.media.sound.JavaSoundAudioClip;
 import org.joda.time.DateTime;
-import pack.Java_Calender;
 
 /**
  *
@@ -14,7 +12,7 @@ import pack.Java_Calender;
  */
 public class ConvertDate {
     public String getdate(String mDate){
-        String shamsi = null;
+        String shamsi = "";
         DateTime date=new DateTime(mDate);
         
         int year=Integer.parseInt(date.toString("yyyy"));

@@ -4,6 +4,8 @@
     Author     : Arash jahani 09367857892 arash.jahani13@gmail.com
 --%>
 
+<%@page import="java.io.DataInputStream"%>
+<%@page import="java.io.File"%>
 <%@page import="com.kavtion.models.Message"%>
 <%@page import="com.google.gson.JsonObject"%>
 <%@page import="com.google.gson.JsonObject"%>
@@ -19,8 +21,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="pack.ProductSql" %> 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-    
+<%                              
     response.setContentType("text/xml");
     response.setHeader("Cache-Control", "no-cache");
     ProductSql product=new ProductSql();
@@ -30,7 +31,7 @@
     String EditQuery;
     String SearchQuery;
     request.setCharacterEncoding("UTF-8");
-    //insert product
+    //insert product     
     if(request.getParameter("insert-product-submit")!=null){
             String id=request.getParameter("id");
             String producttype=request.getParameter("producttype");    
@@ -38,42 +39,20 @@
             String productname=request.getParameter("productname");
             String price=request.getParameter("price");
             String des=request.getParameter("des");
-            String date=request.getParameter("date");
-            String imagepath=request.getParameter("imagepath");           
-            try{
-                InputStream in=request.getInputStream();
-                int size=request.getContentLength();
-                //out.println(size);
-                byte[] line = new byte[1024];
-                int bytes = 0;
-                OutputStream fileOutS = new FileOutputStream("D:\\test.jpg");
-                while((bytes = in.read(line))!=-1){                    
-                    fileOutS.write(line,0, bytes);
-                    //out.println(bytes);
-                }
-                fileOutS.close();
-                fileOutS = null;                
-            }catch(Exception e){
-                out.println("ERROR : Exception \"" + e.getMessage() + "\" Occured.");
-            }
-            
-          //  int size=request.getContentLength();
-          //  out.println(size);
-          //  UploadImage image=new UploadImage();
-          //  image.Upload(in, "D:\\", id);            
-          //  }
-            //if(UpImageStatus.equals(true)){
+            String date=request.getParameter("date");                                 
             InsertQuery="INSERT INTO `rayanpardaz`.`product` (`type`, `name`, `date`, `price`, `oldornew`, `des`) VALUES ('"+producttype+"', '"+productname+"',  '"+date+"', '"+price+"', '"+oldornew+"', '"+des+"');";    
             QueryStatus=product.InsertDelete(InsertQuery);            
             if(QueryStatus.equals(true)){                        
-                response.getWriter().write("ارسال کامل اطلاعات");
+                response.getWriter().write("ثبت کامل اطلاعات");
+                return;
             }else{
-                response.getWriter().write(" ارسال نشد");
+                response.getWriter().write(" خطا در ثبت ");
+                return;
             }
        // }
-    }else{
+    }else{       
     } 
-    //edit product information
+    //edit product information    
     if(request.getParameter("edit-product-submit")!=null){                      
             String id=request.getParameter("id");
             String producttype=request.getParameter("producttype");    
@@ -85,9 +64,11 @@
             EditQuery="UPDATE `rayanpardaz`.`product` SET `type`='"+producttype+"' , `name`='"+productname+"' , `price`= '"+price+"', `oldornew`='"+oldornew+"' , `des`= '"+des+"' WHERE `id`= '"+id+"' ";
             QueryStatus=product.InsertDelete(EditQuery);            
             if(QueryStatus.equals(true)){                        
-                response.getWriter().write("OK");
+                response.getWriter().write("ویرایش با موفقیت انجام شد");
+                return;
             }else{
-                response.getWriter().write("NO");
+                response.getWriter().write("خطا در ویرایش");
+                return;                              
             }
     }
     //delete product
@@ -96,9 +77,11 @@
       DeleteQuery="DELETE FROM `rayanpardaz`.`product` where id='"+key+"' ";          
       QueryStatus=product.InsertDelete(DeleteQuery);      
       if(QueryStatus.equals(true)){
-          response.getWriter().write("OK");
+          response.getWriter().write("انجام شد");
+          return;
       }else{
-          response.getWriter().write("NO");
+          response.getWriter().write("خطا در حذف");
+          return;
       }
     }
     //insert Customer Name
@@ -107,9 +90,11 @@
         InsertQuery="INSERT INTO `rayanpardaz`.`customer` (`name`) VALUES ('"+name+"');";    
         QueryStatus=product.InsertDelete(InsertQuery);        
         if(QueryStatus.equals(true)){
-           response.getWriter().write("OK");
+           response.getWriter().write("ثبت شد");
+           return;
         }else{
-          response.getWriter().write("NO");
+          response.getWriter().write("خطا در ثبت");
+          return;
         }     
      }  
      //Delete Customer Name
@@ -118,9 +103,11 @@
         DeleteQuery="DELETE FROM `rayanpardaz`.`customer` where name='"+name+"' ";     
         QueryStatus=product.InsertDelete(DeleteQuery);        
         if(QueryStatus.equals(true)){
-           response.getWriter().write("OK");
+           response.getWriter().write("انجام شد");
+           return;
         }else{
-          response.getWriter().write("NO");
+          response.getWriter().write("خطا در حذف");
+          return;
         }     
      }        
      //Insert Driver
@@ -130,9 +117,11 @@
         InsertQuery="INSERT INTO `rayanpardaz`.`driver` (`name`, `link`) VALUES ('"+drivername+"', '"+link+"');";         
         QueryStatus=product.InsertDelete(InsertQuery);
         if(QueryStatus.equals(true)){
-           response.getWriter().write("OK");
+           response.getWriter().write("ثبت شد");
+           return;
         }else{
-          response.getWriter().write("NO");
+          response.getWriter().write("خطا در ثبت");
+          return;
         }     
      }
     //Delete Driver
@@ -141,21 +130,24 @@
         DeleteQuery="DELETE FROM `rayanpardaz`.`driver` where name='"+name+"' ";     
         QueryStatus=product.InsertDelete(DeleteQuery);         
         if(QueryStatus.equals(true)){
-           response.getWriter().write("OK");
+           response.getWriter().write("انجام شد");
+           return;
         }else{
-          response.getWriter().write("NO");
+          response.getWriter().write("خطا در حذف");
+          return;
         }     
      }
+    //Send MEssage
      String fullname=request.getParameter("fullname");
      String tell=request.getParameter("tell");
-     String service=request.getParameter("service");
-    if((request.getParameter("fullname")!=null)&&(request.getParameter("tell")!=null)){
-        String msg=fullname+"\n"+tell+"\n"+service;
+     String service=request.getParameter("service");     
+    if((fullname!=null)&&(tell!=null)){
+        String msg="نیازمند"+"-"+service+"-"+"\n"+fullname+tell+"\n";
         App message=new App();        
-        JsonObject send_result = message.Send(new Message(msg, "09367857892", "10009000080000"));
-        
-    }else{
-        response.getWriter().write("اطلاعات کامل را وارد نمایید. ");
+        message.Send(new Message(msg, "09367857892", "10009000080000"));
+        response.getWriter().write("ارسال شد");
+        return;
     }
+    
 %>
 

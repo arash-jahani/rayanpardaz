@@ -29,8 +29,7 @@ function InsertProduct(){
     var productname=document.getElementById('productname').value;
     var price=document.getElementById('price').value;
     var des=document.getElementById('des').value;
-    var date=document.getElementById('date').value;    
-   var imagepath=document.getElementById('imagepath').files[0];   
+    var date=document.getElementById('date').value;           
     var insert_product_submit=document.getElementById('insert-product-submit').value;//IPSsubmit==Insert Product Submit
     xmlhttp=GetXmlHttpObject();
     if (xmlhttp===null)
@@ -52,21 +51,19 @@ function InsertProduct(){
         }
     };
     var parameters="id="+id+"&producttype=" + producttype +"&oldornew=" + oldornew +"&productname=" + productname +"&price=" 
-            + price +"&des=" + des +"&date=" + date +"&imagepath=" + imagepath +"&insert-product-submit=" 
+            + price +"&des=" + des +"&date=" + date +"&insert-product-submit=" 
             + insert_product_submit;
     xmlhttp.open("POST","server.jsp",true);     
     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");    
     xmlhttp.send(parameters);    
 }
-
 function EditProduct(){   
     var id=document.getElementById('key').value;
     var producttype=document.getElementById('producttype').value;    
     var oldornew=document.getElementById('oldornew').value;
     var productname=document.getElementById('productname').value;
-   var price=document.getElementById('price').value;
-    var des=document.getElementById('des').value;    
-    var imagepath=document.getElementById('imagepath').value;
+    var price=document.getElementById('price').value;
+    var des=document.getElementById('des').value;        
     var edit_product_submit=document.getElementById('edit-product-submit').value;//IPSsubmit==Insert Product Submit    
     xmlhttp=GetXmlHttpObject();
     if (xmlhttp===null)
@@ -86,14 +83,12 @@ function EditProduct(){
         }
     };
     var parameters= "id="+id+"&producttype=" + producttype +"&oldornew=" + oldornew +"&productname=" + productname +"&price=" 
-            + price +"&des=" + des +"&imagepath=" + imagepath +"&edit-product-submit=" 
-            + edit_product_submit;
-    alert(parameters);
+            + price +"&des=" + des +"&edit-product-submit=" 
+            + edit_product_submit;   
     xmlhttp.open("POST","server.jsp",true);     
     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");    
     xmlhttp.send(parameters);    
 }
-
 function DeleteProduct(){   
     var id=document.getElementById('key').value;    
     var Delete_product_submit=document.getElementById('Delete-product-submit').value;//IPSsubmit==Insert Product Submit    
@@ -232,13 +227,17 @@ function SendMessage(){
         {
             document.getElementById("message-status").innerHTML=xmlhttp.responseText;                         
         }else if(xmlhttp.readyState===0 ||xmlhttp.readyState===1 ||xmlhttp.readyState===2 ||xmlhttp.readyState===3 ){
-             document.getElementById("message-status").innerHTML="waiting...";
+             document.getElementById("message-status").innerHTML="Wait...";            
         }else{
             document.getElementById("message-status").innerHTML="Server Error!";
         }
     };
     var parameter="service="+service+"&fullname="+fullname+"&tell="+tell;
-    xmlhttp.open("POST","server.jsp",true);
-    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");    
-    xmlhttp.send(parameters);
+    if((fullname!=="")&&(tell!=="")){
+        xmlhttp.open("POST","management/server.jsp",true);     
+        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded"); 
+        xmlhttp.send(parameter);    
+    }else{
+        document.getElementById("message-status").innerHTML="ابتدا اطلاعات خود را وارد کنید";
+    }
 }
